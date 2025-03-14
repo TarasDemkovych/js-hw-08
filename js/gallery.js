@@ -77,7 +77,7 @@ images.forEach(image => {
   img.classList.add('gallery-image');
   img.src = image.preview;
   img.setAttribute('data-source', image.original);
-  img.alt = Image.description;
+  img.alt = image.description;
 
   link.appendChild(img);
 
@@ -92,10 +92,9 @@ list.addEventListener('click', event => {
   if (imgElement) {
     event.preventDefault();
     const largeImageSrc = imgElement.getAttribute('data-source');
-    console.log(largeImageSrc);
-    
+
     const instance = basicLightbox.create(`
-    <img src="${largeImageSrc}" alt = "${images.description}">
+    <img src="${largeImageSrc}" alt = "${imgElement.alt}">
 `);
 
     instance.show();
