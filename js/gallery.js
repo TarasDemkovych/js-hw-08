@@ -65,26 +65,19 @@ const images = [
 ];
 const list = document.querySelector('.gallery');
 
+let galleryNewElements = "";
+
 images.forEach(image => {
-  const item = document.createElement('li');
-  item.classList.add('gallery-item');
-
-  const link = document.createElement('a');
-  link.classList.add('gallery-link');
-  link.href = image.original;
-
-  const img = document.createElement('img');
-  img.classList.add('gallery-image');
-  img.src = image.preview;
-  img.setAttribute('data-source', image.original);
-  img.alt = image.description;
-
-  link.appendChild(img);
-
-  item.appendChild(link);
-
-  list.appendChild(item);
+  galleryNewElements += `
+    <li class="gallery-item">
+      <a class="gallery-link" href="${image.original}">
+        <img class="gallery-image" src="${image.preview}" data-source="${image.original}" alt="${image.description}">
+      </a>
+    </li>
+  `;
 });
+
+list.innerHTML = galleryNewElements;
 
 list.addEventListener('click', event => {
   const imgElement = event.target.closest('img');
@@ -100,3 +93,5 @@ list.addEventListener('click', event => {
     instance.show();
   }
 });
+
+
